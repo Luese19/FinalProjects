@@ -1,0 +1,50 @@
+{
+  "version": 2,
+  "name": "la-bella-cucina",
+  "builds": [
+    {
+      "src": "**/*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "**/*.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "img/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/home.html"
+    },
+    {
+      "src": "/home",
+      "dest": "/home.html"
+    },
+    {
+      "src": "/about",
+      "dest": "/aboutus.html"
+    },
+    {
+      "src": "/menu",
+      "dest": "/menu.html"
+    },
+    {
+      "src": "/contact",
+      "dest": "/contact.html"
+    },
+    {
+      "src": "/reservations",
+      "dest": "/reservayions.html"
+    },
+    {
+      "src": "/product",
+      "dest": "/product.html"
+    }
+  ],
+  "trailingSlash": false,
+  "cleanUrls": true
+}

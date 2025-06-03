@@ -1,0 +1,23 @@
+{
+  "name": "la-bella-cucina",
+  "version": "1.0.0",
+  "description": "Authentic Italian Restaurant Website - La Bella Cucina",
+  "main": "home.html",
+  "scripts": {
+    "dev": "live-server --port=3000",
+    "build": "echo 'Static site - no build required'",
+    "start": "live-server --port=3000"
+  },
+  "keywords": [
+    "restaurant",
+    "italian",
+    "food",
+    "dining",
+    "reservations"
+  ],
+  "author": "La Bella Cucina",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

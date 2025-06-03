@@ -3,44 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LA BELLA CUCINA - Debug</title>
+    <title>LA BELLA CUCINA</title>
     <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Fallback styles for debugging */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Georgia', serif;
-            background: #2c3e50; /* Fallback color instead of image */
-            color: #fff;
-            min-height: 100vh;
-        }
-        .debug-info {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            background: rgba(255,0,0,0.8);
-            padding: 10px;
-            font-size: 12px;
-            z-index: 9999;
-        }
-    </style>
+    <!-- Compatible Styles for Simple Browser -->
+    <link rel="stylesheet" href="styles-compatible.css">
 </head>
 <body>
-    <div class="debug-info">
-        Debug: If you see this red box, HTML is loading but check if CSS styles are applied below.
-    </div>
-    
+    <!-- Background overlay for better text readability -->
     <div class="overlay"></div>
+    
+    <!-- Main container -->
     <div class="container">
+        
+        <!-- Header section with branding -->
         <header>
             <div class="brand">LA/BELLA<br>CUCINA</div>
             <div class="tagline">where great food and great drinks meet</div>
         </header>
         
+        <!-- Main content area -->
         <main>
             <div class="cta">DINE WITH US</div>
             <button class="dine-btn" type="button">Reserve Now</button>
@@ -81,6 +63,7 @@
                 <span>cucina la cucina</span>
             </div>
         </footer>
+        
     </div>
 </body>
 </html>
