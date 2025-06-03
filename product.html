@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - LA BELLA CUCINA</title>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Product page specific styles */
+        body {
+            background: url('img/place.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .container {
+            padding-top: 80px; /* Add gap between navbar and content */
+        }
+        
+        /* Navbar brand styles */
+        .navbar-brand {
+            flex: 1;
+        }
+        
+        .brand-link {
+            color: #e0c097;
+            text-decoration: none;
+            font-family: 'Georgia', serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+        
+        .brand-link:hover {
+            color: #fff;
+        }
+        
+        /* Update navbar to use flexbox for proper alignment */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .products-content {
+            background: rgba(27, 27, 27, 0.8);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem auto;
+            color: #fff;
+            max-width: 1200px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .products-title {
+            font-size: 3rem;
+            font-family: 'Georgia', serif;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #e0c097;
+            letter-spacing: 0.1em;
+        }
+
+        .products-description {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .product-info {
+            padding: 1.8rem;
+        }
+
+        .product-title {
+            font-size: 2rem;
+            font-family: 'Georgia', serif;
+            color: #e0c097;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .product-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .products-content {
+                margin: 1rem;
+                padding: 2rem;
+                width: 95%;
+            }
+            
+            .products-title {
+                font-size: 2.2rem;
+            }
+            
+            .products-description {
+                font-size: 1rem;
+            }
+            
+            .product-title {
+                font-size: 1.6rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .product-image {
+                height: 200px;
+            }
+            
+            .container {
+                padding-top: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="home.html" class="brand-link">LA BELLA CUCINA</a>
+        </div>        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="home.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="aboutus.html" class="nav-link">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a href="product.html" class="nav-link">Product</a>
+            </li>
+            <li class="nav-item">
+                <a href="contact.html" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a href="rateus.html" class="nav-link">Rate Us</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Products Content -->
+        <div class="products-content">
+            <h1 class="products-title">Our Products</h1>
+            
+            <p class="products-description">
+                Discover the authentic taste of Italy through our carefully crafted selection of traditional dishes, 
+                fine wines, and artisanal delights. Each product tells a story of Italian culinary heritage, 
+                bringing you the finest flavors from our kitchen to your table.
+            </p>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="img/🍝 La Pasta Italiana_ A Taste of Italy in Every….jpg" alt="Fresh Italian Pasta" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Pasta</h2>
+                        <p class="product-text">
+                            Freshly made pasta, crafted daily with 
+                            authentic Italian recipes and rich,
+                            flavorful sauces.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="img/wine1.jpg" alt="Fine Italian Wine" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Wine</h2>
+                        <p class="product-text">
+                            A curated selection of fine Italian
+                            wines, perfectly
+                            paired to complement every dish.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="img/Download premium image of Pizza food italian food mozzarella_  about background, black background, food, tomato, and table 12136811.jpg" alt="Wood-fired Pizza" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Pizza</h2>
+                        <p class="product-text">
+                            Wood-fired, thin-crust 
+                            pizzas topped with the freshest Italian 
+                            ingredients.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="img/dessert1.jpg" alt="Italian Desserts" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Desserts</h2>
+                        <p class="product-text">
+                            Classic Italian sweets like 
+                            Tiramisu and Panna Cotta for a
+                            perfect ending.
+                        </p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="img/Italian Coffee.jpg" alt="Authentic Italian Coffee" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Coffee</h2>
+                        <p class="product-text">
+                            Rich and aromatic Italian coffee, 
+                            brewed to perfection for a delightful
+                            experience.
+                        </p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="img/Chicken & Onion Alfredo Pizza [1 Hour] - Chasety.jpg" alt="Chicken & Onion Alfredo Pizza" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Specialty Pizza</h2>
+                        <p class="product-text">
+                            Unique pizza creations like 
+                            Chicken & Onion Alfredo, 
+                            blending flavors for a memorable meal.
+                        </p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="img/wine2.jpg" alt="Fine Italian Wine" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Wine</h2>
+                        <p class="product-text">
+                            A curated selection of fine Italian
+                            wines, perfectly
+                            paired to complement every dish.
+                        </p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="img/milkshake1.jpg" alt="Authentic Italian Milkshake" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Milkshake</h2>
+                        <p class="product-text">
+                            Creamy and delicious Italian milkshakes,
+                            made with the finest ingredients for a
+                            refreshing treat.
+                        </p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="img/how to make milk tea without boba can feel boring….jpg" alt="Authentic Italian Milkshake" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Milkshake</h2>
+                        <p class="product-text">
+                            Creamy and delicious Italian milkshakes,
+                            made with caramel for a delightful twist.
+                        </p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="img/Prosciutto Crostini with Balsamic Glaze - Seasoned….jpg" alt="Prosciutto Crostini" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Prosciutto Crostini</h2>
+                        <p class="product-text">
+                            Crispy crostini topped with savory prosciutto
+                            and a drizzle of balsamic glaze.
+                        </p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="img/dessert2.jpg" alt="Italian Desserts" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Desserts</h2>
+                        <p class="product-text">
+                            Classic Italian sweets like 
+                            Tiramisu and Panna Cotta for a
+                            perfect ending.
+                        </p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="img/Burrata Bruschetta – recipestasteful.jpg" alt="Burrata Bruschetta" class="product-image">
+                    <div class="product-info">
+                        <h2 class="product-title">Burrata Bruschetta</h2>
+                        <p class="product-text">
+                            Creamy burrata cheese served on toasted bread
+                            with fresh tomatoes and basil.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer section -->
+        
+    </div>
+
+    <script>
+        // JavaScript for navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Add click event listeners to navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get the href attribute
+                    const href = this.getAttribute('href');
+                    
+                    // Navigate to the page
+                    if (href && href !== '#') {
+                        window.location.href = href;
+                    }
+                });
+            });
+            
+            // Specific function for Product navigation
+            function navigateToProduct() {
+                window.location.href = 'product.html';
+            }
+            
+            // Add smooth scrolling effect for better UX
+            const productLink = document.querySelector('a[href="product.html"]');
+            if (productLink) {
+                productLink.style.opacity = '1';
+                productLink.style.background = 'rgba(224, 192, 151, 0.2)';
+                productLink.style.borderColor = 'rgba(224, 192, 151, 0.5)';
+            }
+        });
+    </script>
+</body>
+</html>

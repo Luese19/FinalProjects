@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - LA BELLA CUCINA</title>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* About Us specific styles */
+        body {
+            background: url('download (1).jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;        }        .container {
+            padding-top: 80px; /* Add gap between navbar and content */
+        }
+        
+        /* Navbar brand styles */
+        .navbar-brand {
+            flex: 1;
+        }
+        
+        .brand-link {
+            color: #e0c097;
+            text-decoration: none;
+            font-family: 'Georgia', serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+        
+        .brand-link:hover {
+            color: #fff;
+        }
+        
+        /* Update navbar to use flexbox for proper alignment */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .about-content {
+            background: rgba(27, 27, 27, 0.8);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem auto;
+            color: #fff;
+            max-width: 900px; /* Reduced size */
+            width: 90%; /* Responsive width */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+          .about-title {
+            font-size: 3rem; /* Reduced size */
+            font-family: 'Georgia', serif;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #e0c097;
+            letter-spacing: 0.1em;
+        }
+          .about-description {
+            font-size: 1.2rem; /* Slightly reduced */
+            line-height: 1.7;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+        }
+        
+        .values-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+          .value-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.8rem; /* Slightly reduced padding */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+          .value-title {
+            font-size: 1.8rem; /* Slightly reduced */
+            font-family: 'Georgia', serif;
+            color: #e0c097;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .value-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        .core-values {
+            margin-top: 2rem;
+        }
+          .core-values h3 {
+            font-size: 2rem; /* Slightly reduced */
+            color: #e0c097;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-family: 'Georgia', serif;
+        }
+        
+        .values-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .values-list li {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .values-list li strong {
+            color: #e0c097;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+          /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .about-content {
+                margin: 1rem;
+                padding: 2rem; /* Reduced padding for mobile */
+                width: 95%;
+            }
+            
+            .about-title {
+                font-size: 2.2rem; /* Reduced mobile size */
+            }
+            
+            .about-description {
+                font-size: 1rem;
+            }
+            
+            .value-title {
+                font-size: 1.4rem;
+            }
+            
+            .values-section {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            
+            .container {
+                padding-top: 70px; /* Adjusted for mobile navbar */
+            }
+        }
+    </style>
+</head>
+<body>    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="home.html" class="brand-link">LA BELLA CUCINA</a>
+        </div>        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="aboutus.html" class="nav-link">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a href="product.html" class="nav-link">Product</a>
+            </li>
+            <li class="nav-item">
+                <a href="contact.html" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a href="rateus.html" class="nav-link">Rate Us</a>
+            </li>
+        </ul>
+    </nav><div class="container">
+        <!-- About Us Content -->
+        <div class="about-content">
+            <h1 class="about-title">About Us</h1>
+            
+            <p class="about-description">
+                At La Bella Cucina, we bring the heart of Italy to your table. 
+                Inspired by traditional recipes and fresh, authentic ingredients, our mission is to share the rich flavors of Italian cuisine with every dish we serve. From handmade pasta to wood-fired pizzas, 
+                we create a warm, family-style dining experience where every guest feels at home. Buon appetito!
+            </p>
+
+            <div class="values-section">
+                <div class="value-card">
+                    <h2 class="value-title">Mission</h2>
+                    <p class="value-text">
+                        To bring authentic Italian flavors and warm hospitality to every table, creating a true taste of Italy in every bite.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <h2 class="value-title">Vision</h2>
+                    <p class="value-text">
+                        To be the go-to Italian dining destination where every meal feels like a taste of home—celebrating authentic flavors, warm hospitality, and unforgettable experiences.
+                    </p>
+                </div>
+            </div>
+
+            <div class="core-values">
+                <h3>Core Values</h3>
+                <ul class="values-list">
+                    <li>
+                        <strong>• Authenticity</strong>
+                        We stay true to traditional Italian recipes and cooking methods.
+                    </li>
+                    <li>
+                        <strong>• Quality & Freshness</strong>
+                        Only the finest ingredients, sourced locally and imported from Italy.
+                    </li>
+                    <li>
+                        <strong>• Family & Community</strong>
+                        We create a welcoming space where families and friends can gather and enjoy good food.
+                    </li>
+                    <li>
+                        <strong>• Passion for Service</strong>
+                        Every guest is treated with genuine warmth, care, and attention.
+                    </li>
+                    <li>
+                        <strong>• Excellence in Every Dish</strong>
+                        We take pride in serving beautifully crafted, delicious meals every time.
+                    </li>
+                </ul>            </div>
+        </div>
+        
+        <!-- Footer section -->
+        
+    </div>
+
+    <script>
+        // JavaScript for navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Add click event listeners to navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get the href attribute
+                    const href = this.getAttribute('href');
+                    
+                    // Navigate to the page
+                    if (href && href !== '#') {
+                        window.location.href = href;
+                    }
+                });
+            });
+            
+            // Specific function for About Us navigation
+            function navigateToAboutUs() {
+                window.location.href = 'aboutus.html';
+            }
+            
+            // Add smooth scrolling effect for better UX
+            const aboutUsLink = document.querySelector('a[href="aboutus.html"]');
+            if (aboutUsLink) {
+                aboutUsLink.style.opacity = '1';
+                aboutUsLink.style.background = 'rgba(224, 192, 151, 0.2)';
+                aboutUsLink.style.borderColor = 'rgba(224, 192, 151, 0.5)';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LA BELLA CUCINA</title>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="aboutus.html" class="nav-link">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a href="product.html" class="nav-link">Product</a>
+            </li>
+            <li class="nav-item">
+                <a href="contact.html" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a href="menu.html" class="nav-link">Menu</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="brand">LA/BELLA<br>CUCINA</div>
+            <div class="tagline">where great food and great drinks meet</div>
+        </header><main>
+            <div class="cta">DINE WITH US</div>
+            <button class="dine-btn" type="button">Reserve Now</button>
+        </main>
+        
+        <!-- Search section with gallery -->
+        <div class="search-section">
+            <div class="search-bar">
+                <span class="icon" role="button" aria-label="Search" tabindex="0">&#128269;</span>
+                <input type="text" placeholder="Search..." aria-label="Search restaurants">
+                <span class="icon" role="button" aria-label="Clear search" tabindex="0">&#10006;</span>
+            </div>
+            <div class="gallery">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Delicious pasta dish">
+                <img src="img/Chicken & Onion Alfredo Pizza [1 Hour] - Chasety.jpg" alt="Fine wine selection">
+                <img src="img/Italian Coffee.jpg" alt="Authentic Italian pizza">
+                <img src="img/🍝 La Pasta Italiana_ A Taste of Italy in Every….jpg" alt="Premium wine collection">
+                <img src="img/Italian Pasta Photos - Download Free High-Quality Pictures _ Freepik.jpg" alt="Traditional Italian cuisine">
+                <img src="img/Download premium image of Pizza food italian food mozzarella_  about background, black background, food, tomato, and table 12136811.jpg" alt="Curated wine selection">
+            </div>
+        </div>
+        
+        <!-- Footer section -->
+        <footer>
+            <div class="footer-info">
+                <span>
+                    <i class="fa fa-map-marker" aria-hidden="true"></i> 
+                    682 Shaw Blvd, City of Pasig, Metro Manila
+                </span>
+            </div>
+            <div class="socials">
+                <a href="#" aria-label="Visit our Instagram page" title="Follow us on Instagram">
+                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="#" aria-label="Visit our Facebook page" title="Follow us on Facebook">
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>                <span>cucina la cucina</span>
+            </div>
+        </footer>    
+    </div>
+
+    <script>
+        // JavaScript for navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Add click event listeners to navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get the href attribute
+                    const href = this.getAttribute('href');
+                    
+                    // Navigate to the page
+                    if (href && href !== '#') {
+                        window.location.href = href;
+                    }
+                });
+            });
+            
+            // Add click event to Reserve Now button
+            const reserveBtn = document.querySelector('.dine-btn');
+            if (reserveBtn) {
+                reserveBtn.addEventListener('click', function() {
+                    // You can redirect to a reservation page if available
+                    alert('Reservation feature coming soon!');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
