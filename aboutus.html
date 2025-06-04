@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - LA BELLA CUCINA</title>
     <!-- Font Awesome CDN for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    <!-- Leaflet Map API (Free alternative to Google Maps) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <!-- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -212,6 +214,253 @@
             .brand-link {
                 font-size: 1rem;
             }
+        }        /* Branch Locations Styles */
+        .branch-locations {
+            background: rgba(27, 27, 27, 0.8);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .branch-locations-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .branch-toggle-btn {
+            background: rgba(224, 192, 151, 0.3);
+            border: 1px solid rgba(224, 192, 151, 0.5);
+            color: #e0c097;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .branch-toggle-btn:hover {
+            background: rgba(224, 192, 151, 0.5);
+        }
+
+        .branch-content {
+            display: none;
+        }
+
+        .branch-content.active {
+            display: block;
+        }
+
+        .branch-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .branch-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .branch-item {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 1rem;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .branch-item:hover {
+            border-color: rgba(224, 192, 151, 0.5);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .branch-item.selected {
+            border-color: #e0c097;
+            background: rgba(224, 192, 151, 0.2);
+        }
+
+        .branch-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #e0c097;
+            margin-bottom: 0.5rem;
+        }
+
+        .branch-details {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
+        }
+
+        .branch-details i {
+            color: #e0c097;
+            margin-right: 0.5rem;
+            width: 15px;
+        }
+
+        .branch-details div {
+            margin-bottom: 0.3rem;
+        }
+
+        .map-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            height: 400px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+
+        .map-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #e0c097;
+        }        /* Map will be loaded here */
+        #branchMap {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Custom marker styles for Leaflet */
+        .custom-marker {
+            background: transparent !important;
+            border: none !important;
+        }
+
+        /* Leaflet popup styles to match design */
+        .leaflet-popup-content-wrapper {
+            background: rgba(27, 27, 27, 0.95) !important;
+            border-radius: 8px !important;
+            border: 1px solid rgba(224, 192, 151, 0.5) !important;
+        }
+
+        .leaflet-popup-content {
+            margin: 0 !important;
+            color: white !important;
+        }
+
+        .leaflet-popup-tip {
+            background: rgba(27, 27, 27, 0.95) !important;
+        }
+
+        .branch-info-popup {
+            background: rgba(27, 27, 27, 0.95);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            min-width: 200px;
+            border: 1px solid rgba(224, 192, 151, 0.5);
+        }
+
+        .branch-info-popup h4 {
+            color: #e0c097;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .branch-info-popup p {
+            margin: 0.2rem 0;
+            font-size: 0.85rem;
+        }
+
+        .select-branch-btn {
+            background: linear-gradient(135deg, #e0c097, #d4af37);
+            color: #1b1b1b;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            width: 100%;
+            transition: transform 0.2s ease;
+        }
+
+        .select-branch-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .branch-info-text {
+            text-align: center;
+            margin-top: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .locations-title {
+            font-size: 2rem;
+            color: #e0c097;
+            margin-bottom: 0;
+            font-family: 'Georgia', serif;
+        }        /* Additional responsive styles for branch locations */
+        @media (max-width: 768px) {
+            .branch-locations {
+                margin: 1rem;
+                padding: 2rem;
+                width: 95%;
+            }
+
+            .branch-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+
+            .branch-locations-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .branch-toggle-btn {
+                align-self: stretch;
+                justify-content: center;
+            }
+
+            .locations-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .branch-locations {
+                margin: 0.5rem;
+                padding: 1.5rem;
+                width: 98%;
+            }
+
+            .locations-title {
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
@@ -296,6 +545,79 @@
                 </ul>            </div>
         </div>
         
+        <!-- Branch Locations -->
+        <div class="branch-locations">
+            <div class="branch-locations-header">
+                <h3 class="locations-title">Our Branch Locations</h3>
+                <button type="button" class="branch-toggle-btn" id="branchToggleBtn">
+                    <i class="fa fa-map-marker"></i>
+                    <span>View All Branches</span>
+                    <i class="fa fa-chevron-down" id="branchToggleIcon"></i>
+                </button>
+            </div>
+            
+            <div class="branch-content" id="branchContent">
+                <div class="branch-grid">
+                    <!-- Branch List -->
+                    <div class="branch-list">
+                        <div class="branch-item" data-branch="main" data-lat="14.5995" data-lng="121.0537">
+                            <div class="branch-name">Main Branch - Pasig</div>
+                            <div class="branch-details">
+                                <div><i class="fa fa-map-marker"></i>682 Shaw Blvd, Pasig City</div>
+                                <div><i class="fa fa-phone"></i>+63 917 548 7255</div>
+                                <div><i class="fa fa-clock-o"></i>11:00 AM - 10:00 PM</div>
+                                <div><i class="fa fa-info-circle"></i>Main dining location</div>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-item" data-branch="makati" data-lat="14.5547" data-lng="121.0244">
+                            <div class="branch-name">Makati Branch</div>
+                            <div class="branch-details">
+                                <div><i class="fa fa-map-marker"></i>Greenbelt Mall, Makati City</div>
+                                <div><i class="fa fa-phone"></i>+63 917 548 7256</div>
+                                <div><i class="fa fa-clock-o"></i>10:00 AM - 11:00 PM</div>
+                                <div><i class="fa fa-info-circle"></i>Shopping mall location</div>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-item" data-branch="bgc" data-lat="14.5515" data-lng="121.0473">
+                            <div class="branch-name">BGC Branch</div>
+                            <div class="branch-details">
+                                <div><i class="fa fa-map-marker"></i>High Street, Bonifacio Global City</div>
+                                <div><i class="fa fa-phone"></i>+63 917 548 7257</div>
+                                <div><i class="fa fa-clock-o"></i>11:00 AM - 12:00 AM</div>
+                                <div><i class="fa fa-info-circle"></i>Premium dining experience</div>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-item" data-branch="qc" data-lat="14.6760" data-lng="121.0437">
+                            <div class="branch-name">Quezon City Branch</div>
+                            <div class="branch-details">
+                                <div><i class="fa fa-map-marker"></i>Eastwood Mall, Quezon City</div>
+                                <div><i class="fa fa-phone"></i>+63 917 548 7258</div>
+                                <div><i class="fa fa-clock-o"></i>10:00 AM - 10:00 PM</div>
+                                <div><i class="fa fa-info-circle"></i>Family-friendly atmosphere</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Map Container -->
+                    <div class="map-container">
+                        <div class="map-placeholder" id="mapPlaceholder">
+                            <i class="fa fa-map"></i>
+                            <p>Interactive map will load here</p>
+                            <small>Click on a branch to view location on map</small>
+                        </div>
+                        <div id="branchMap"></div>
+                    </div>
+                </div>
+                
+                <div class="branch-info-text">
+                    <i class="fa fa-info-circle"></i> Click on any branch above to view its location on the map and get directions
+                </div>
+            </div>
+        </div>
+        
         <!-- Footer section -->
         
     </div>    <script>
@@ -359,6 +681,179 @@
                 aboutUsLink.style.background = 'rgba(224, 192, 151, 0.2)';
                 aboutUsLink.style.borderColor = 'rgba(224, 192, 151, 0.5)';
             }
+
+            // Branch locations functionality
+            let map;
+            let markers = [];
+            let selectedBranch = null;
+
+            // Branch data
+            const branches = {
+                main: {
+                    name: 'Main Branch - Pasig',
+                    address: '682 Shaw Blvd, Pasig City',
+                    phone: '+63 917 548 7255',
+                    hours: '11:00 AM - 10:00 PM',
+                    description: 'Main dining location',
+                    lat: 14.5995,
+                    lng: 121.0537
+                },
+                makati: {
+                    name: 'Makati Branch',
+                    address: 'Greenbelt Mall, Makati City',
+                    phone: '+63 917 548 7256',
+                    hours: '10:00 AM - 11:00 PM',
+                    description: 'Shopping mall location',
+                    lat: 14.5547,
+                    lng: 121.0244
+                },
+                bgc: {
+                    name: 'BGC Branch',
+                    address: 'High Street, Bonifacio Global City',
+                    phone: '+63 917 548 7257',
+                    hours: '11:00 AM - 12:00 AM',
+                    description: 'Premium dining experience',
+                    lat: 14.5515,
+                    lng: 121.0473
+                },
+                qc: {
+                    name: 'Quezon City Branch',
+                    address: 'Eastwood Mall, Quezon City',
+                    phone: '+63 917 548 7258',
+                    hours: '10:00 AM - 10:00 PM',
+                    description: 'Family-friendly atmosphere',
+                    lat: 14.6760,
+                    lng: 121.0437
+                }
+            };
+
+            // Toggle branch locations visibility
+            const branchToggleBtn = document.getElementById('branchToggleBtn');
+            const branchContent = document.getElementById('branchContent');
+            const branchToggleIcon = document.getElementById('branchToggleIcon');
+
+            if (branchToggleBtn && branchContent && branchToggleIcon) {
+                branchToggleBtn.addEventListener('click', function() {
+                    const isActive = branchContent.classList.contains('active');
+                    
+                    if (isActive) {
+                        branchContent.classList.remove('active');
+                        branchToggleIcon.className = 'fa fa-chevron-down';
+                        branchToggleBtn.querySelector('span').textContent = 'View All Branches';
+                    } else {
+                        branchContent.classList.add('active');
+                        branchToggleIcon.className = 'fa fa-chevron-up';
+                        branchToggleBtn.querySelector('span').textContent = 'Hide Branches';
+                        
+                        // Initialize map if not already done
+                        if (!map) {
+                            setTimeout(initMap, 100);
+                        }
+                    }
+                });
+            }            // Initialize Leaflet Map
+            function initMap() {
+                // Center the map on Manila
+                const center = [14.5995, 121.0537];
+                
+                map = L.map('branchMap').setView(center, 11);
+                
+                // Add OpenStreetMap tiles
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+                // Hide map placeholder
+                const mapPlaceholder = document.getElementById('mapPlaceholder');
+                if (mapPlaceholder) {
+                    mapPlaceholder.style.display = 'none';
+                }
+
+                // Clear existing markers
+                markers = [];
+
+                // Add markers for each branch
+                Object.keys(branches).forEach(branchKey => {
+                    const branch = branches[branchKey];
+                    
+                    // Create custom icon
+                    const customIcon = L.divIcon({
+                        className: 'custom-marker',
+                        html: `<div style="background-color: #e0c097; width: 30px; height: 30px; border-radius: 50%; border: 3px solid #1b1b1b; display: flex; align-items: center; justify-content: center;">
+                                   <i class="fa fa-cutlery" style="color: #1b1b1b; font-size: 12px;"></i>
+                               </div>`,
+                        iconSize: [30, 30],
+                        iconAnchor: [15, 15]
+                    });
+                    
+                    const marker = L.marker([branch.lat, branch.lng], { icon: customIcon }).addTo(map);
+
+                    // Create popup content
+                    const popupContent = `
+                        <div class="branch-info-popup">
+                            <h4>${branch.name}</h4>
+                            <p><i class="fa fa-map-marker"></i> ${branch.address}</p>
+                            <p><i class="fa fa-phone"></i> ${branch.phone}</p>
+                            <p><i class="fa fa-clock-o"></i> ${branch.hours}</p>
+                            <p><i class="fa fa-info-circle"></i> ${branch.description}</p>
+                            <button class="select-branch-btn" onclick="selectBranch('${branchKey}')">
+                                Select This Branch
+                            </button>
+                        </div>
+                    `;
+
+                    marker.bindPopup(popupContent);
+
+                    markers.push({
+                        marker: marker,
+                        branchKey: branchKey
+                    });
+                });
+            }            // Handle branch item clicks
+            document.querySelectorAll('.branch-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const branchKey = this.dataset.branch;
+                    const lat = parseFloat(this.dataset.lat);
+                    const lng = parseFloat(this.dataset.lng);
+
+                    // Update selected branch styling
+                    document.querySelectorAll('.branch-item').forEach(el => el.classList.remove('selected'));
+                    this.classList.add('selected');
+
+                    selectedBranch = branchKey;
+
+                    // If map is initialized, center on this branch
+                    if (map) {
+                        map.setView([lat, lng], 15);
+
+                        // Find and open the corresponding marker
+                        const markerData = markers.find(m => m.branchKey === branchKey);
+                        if (markerData) {
+                            // Close all popups first
+                            map.closePopup();
+                            // Open the selected marker's popup
+                            markerData.marker.openPopup();
+                        }
+                    }
+                });
+            });            // Global function to select branch from map popup
+            window.selectBranch = function(branchKey) {
+                const branchItem = document.querySelector(`[data-branch="${branchKey}"]`);
+                if (branchItem) {
+                    branchItem.click();
+                    
+                    // Scroll to the selected branch item
+                    branchItem.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                    
+                    // Close the popup
+                    if (map) {
+                        map.closePopup();
+                    }
+                }
+            };
         });
     </script>
 </body>

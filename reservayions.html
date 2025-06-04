@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservations - LA BELLA CUCINA</title>    <!-- Font Awesome CDN for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- jsPDF library for PDF generation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    <!-- jsPDF library for PDF generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <!-- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
@@ -367,9 +366,7 @@
             .calendar-nav-btn {
                 padding: 6px 10px;
                 font-size: 0.9rem;
-            }
-
-            .calendar-month-year {
+            }            .calendar-month-year {
                 font-size: 1.1rem;
             }
         }
@@ -423,8 +420,7 @@
                     <li><i class="fa fa-envelope"></i> Email: reservations@labellacucina.com</li>
                     <li><i class="fa fa-users"></i> Party Size: 1 - 12 guests</li>
                     <li><i class="fa fa-info-circle"></i> Advance booking recommended</li>
-                </ul>
-            </div>
+                </ul>            </div>
 
             <!-- Calendar for Date Selection -->
             <div class="calendar-container">
@@ -748,9 +744,7 @@
                     currentYear++;
                 }
                 generateCalendar(currentMonth, currentYear);
-            });
-
-            // Initialize calendar
+            });            // Initialize calendar
             generateCalendar(currentMonth, currentYear);
 
             // Handle reservation form submission
