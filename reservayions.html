@@ -87,13 +87,143 @@
         .form-group {
             display: flex;
             flex-direction: column;
-        }
-
-        .form-row {
+        }        .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
         }
+
+        /* Calendar Styles */
+        .calendar-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-nav-btn {
+            background: rgba(224, 192, 151, 0.3);
+            border: 1px solid rgba(224, 192, 151, 0.5);
+            color: #e0c097;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .calendar-nav-btn:hover {
+            background: rgba(224, 192, 151, 0.5);
+        }
+
+        .calendar-month-year {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #e0c097;
+            font-family: 'Georgia', serif;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-day-header {
+            background: rgba(224, 192, 151, 0.3);
+            color: #e0c097;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .calendar-day {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-day:hover {
+            background: rgba(224, 192, 151, 0.3);
+        }
+
+        .calendar-day.other-month {
+            color: rgba(255, 255, 255, 0.3);
+            cursor: not-allowed;
+        }
+
+        .calendar-day.past {
+            color: rgba(255, 255, 255, 0.3);
+            cursor: not-allowed;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .calendar-day.available {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: rgba(76, 175, 80, 0.5);
+        }
+
+        .calendar-day.limited {
+            background: rgba(255, 193, 7, 0.3);
+            border-color: rgba(255, 193, 7, 0.5);
+        }
+
+        .calendar-day.full {
+            background: rgba(244, 67, 54, 0.3);
+            border-color: rgba(244, 67, 54, 0.5);
+            cursor: not-allowed;
+        }
+
+        .calendar-day.selected {
+            background: rgba(224, 192, 151, 0.6);
+            border-color: #e0c097;
+            color: #1b1b1b;
+            font-weight: bold;
+        }
+
+        .calendar-legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .legend-available { background: rgba(76, 175, 80, 0.5); }
+        .legend-limited { background: rgba(255, 193, 7, 0.5); }
+        .legend-full { background: rgba(244, 67, 54, 0.5); }
+        .legend-unavailable { background: rgba(0, 0, 0, 0.3); }
 
         .form-label {
             font-size: 1.1rem;
@@ -191,9 +321,7 @@
             border-radius: 10px;
             margin-bottom: 1rem;
             display: none;
-        }
-
-        /* Responsive adjustments */
+        }        /* Responsive adjustments */
         @media (max-width: 768px) {
             .reservation-content {
                 margin: 1rem;
@@ -215,6 +343,34 @@
             
             .container {
                 padding-top: 70px;
+            }
+
+            .calendar-legend {
+                gap: 1rem;
+                justify-content: space-around;
+            }
+
+            .legend-item {
+                font-size: 0.8rem;
+            }
+
+            .calendar-grid {
+                gap: 1px;
+            }
+
+            .calendar-day {
+                padding: 8px;
+                min-height: 35px;
+                font-size: 0.9rem;
+            }
+
+            .calendar-nav-btn {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+
+            .calendar-month-year {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -258,9 +414,7 @@
                 Book your table at La Bella Cucina and experience authentic Italian dining in a warm, 
                 welcoming atmosphere. We look forward to serving you our finest dishes and creating 
                 unforgettable memories for you and your loved ones.
-            </p>
-
-            <!-- Restaurant Information -->
+            </p>            <!-- Restaurant Information -->
             <div class="reservation-info">
                 <h3 class="info-title">Restaurant Information</h3>
                 <ul class="info-list">
@@ -270,7 +424,41 @@
                     <li><i class="fa fa-users"></i> Party Size: 1 - 12 guests</li>
                     <li><i class="fa fa-info-circle"></i> Advance booking recommended</li>
                 </ul>
-            </div>            <!-- Success Message -->
+            </div>
+
+            <!-- Calendar for Date Selection -->
+            <div class="calendar-container">
+                <h3 class="info-title">Select Your Reservation Date</h3>                <div class="calendar-header">
+                    <button type="button" class="calendar-nav-btn" id="prevMonth" title="Previous Month" aria-label="Go to previous month">
+                        <i class="fa fa-chevron-left"></i>
+                    </button>
+                    <div class="calendar-month-year" id="monthYear"></div>
+                    <button type="button" class="calendar-nav-btn" id="nextMonth" title="Next Month" aria-label="Go to next month">
+                        <i class="fa fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Calendar will be generated here -->
+                </div>
+                <div class="calendar-legend">
+                    <div class="legend-item">
+                        <div class="legend-color legend-available"></div>
+                        <span>Available</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color legend-limited"></div>
+                        <span>Limited Slots</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color legend-full"></div>
+                        <span>Fully Booked</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color legend-unavailable"></div>
+                        <span>Unavailable</span>
+                    </div>
+                </div>
+            </div><!-- Success Message -->
             <div id="successMessage" class="success-message">
                 <i class="fa fa-check-circle"></i> Your reservation has been submitted successfully! A PDF confirmation has been downloaded to your device. We will also contact you within 24 hours to confirm your booking.
             </div>
@@ -454,12 +642,116 @@
                     const icon = navToggle.querySelector('i');
                     if (icon) icon.className = 'fa fa-bars';
                 }
-            });
-
-            // Set minimum date to today
+            });            // Set minimum date to today
             const dateInput = document.getElementById('date');
             const today = new Date().toISOString().split('T')[0];
             dateInput.min = today;
+
+            // Calendar functionality
+            let currentMonth = new Date().getMonth();
+            let currentYear = new Date().getFullYear();
+            let selectedDate = null;            // Reservation data (in a real app, this would come from a server)
+            const reservationData = {
+                // Format: 'YYYY-MM-DD': availability status
+                // 'available', 'limited', 'full'
+                // Empty object means all dates default to 'available'
+            };
+
+            function generateCalendar(month, year) {
+                const monthNames = [
+                    "January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"
+                ];
+                
+                const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                
+                // Update month/year display
+                document.getElementById('monthYear').textContent = `${monthNames[month]} ${year}`;
+                
+                // Clear calendar grid
+                const calendarGrid = document.getElementById('calendarGrid');
+                calendarGrid.innerHTML = '';
+                
+                // Add day headers
+                daysOfWeek.forEach(day => {
+                    const dayHeader = document.createElement('div');
+                    dayHeader.className = 'calendar-day-header';
+                    dayHeader.textContent = day;
+                    calendarGrid.appendChild(dayHeader);
+                });
+                
+                // Get first day of month and number of days
+                const firstDay = new Date(year, month, 1).getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+                const currentDate = new Date();
+                
+                // Add empty cells for days before the first day of the month
+                for (let i = 0; i < firstDay; i++) {
+                    const emptyDay = document.createElement('div');
+                    emptyDay.className = 'calendar-day other-month';
+                    calendarGrid.appendChild(emptyDay);
+                }
+                
+                // Add days of the month
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'calendar-day';
+                    dayElement.textContent = day;
+                    
+                    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    const dateObj = new Date(year, month, day);
+                    
+                    // Check if date is in the past
+                    if (dateObj < currentDate.setHours(0, 0, 0, 0)) {
+                        dayElement.classList.add('past');
+                    } else {
+                        // Check availability
+                        const availability = reservationData[dateStr] || 'available';
+                        dayElement.classList.add(availability);
+                        
+                        // Add click event for available dates
+                        if (availability !== 'full') {
+                            dayElement.addEventListener('click', function() {
+                                // Remove previous selection
+                                document.querySelectorAll('.calendar-day.selected').forEach(el => {
+                                    el.classList.remove('selected');
+                                });
+                                
+                                // Add selection to clicked day
+                                dayElement.classList.add('selected');
+                                selectedDate = dateStr;
+                                
+                                // Update the date input
+                                dateInput.value = dateStr;
+                            });
+                        }
+                    }
+                    
+                    calendarGrid.appendChild(dayElement);
+                }
+            }
+
+            // Calendar navigation
+            document.getElementById('prevMonth').addEventListener('click', function() {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                generateCalendar(currentMonth, currentYear);
+            });
+
+            document.getElementById('nextMonth').addEventListener('click', function() {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                generateCalendar(currentMonth, currentYear);
+            });
+
+            // Initialize calendar
+            generateCalendar(currentMonth, currentYear);
 
             // Handle reservation form submission
             const reservationForm = document.getElementById('reservationForm');
@@ -547,9 +839,8 @@
                 doc.setFont('helvetica', 'normal');
                 doc.setTextColor(...lightGray);
                 doc.text(`Confirmation Number: ${confirmationNumber}`, 105, 65, { align: 'center' });
-                
-                // Date generated
-                const currentDate = new Date().toLocaleDateString('en-US', {
+                  // Date generated
+                const currentDate = new Date().toLocaleDateString('en-PH', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
@@ -605,8 +896,7 @@
                     const ampm = hour24 >= 12 ? 'PM' : 'AM';
                     formattedTime = `${hour12}:${minutes} ${ampm}`;
                 }
-                
-                yPos += 15;
+                  yPos += 15;
                 const reservationInfo = [
                     ['Date:', reservationDate],
                     ['Time:', formattedTime],
@@ -618,7 +908,7 @@
                     doc.setFont('helvetica', 'bold');
                     doc.text(label, 25, yPos);
                     doc.setFont('helvetica', 'normal');
-                    doc.text(value, 65, yPos);
+                    doc.text(value, 85, yPos);
                     yPos += 8;
                 });
                 
@@ -633,11 +923,9 @@
                     doc.text(splitRequests, 25, yPos);
                     yPos += splitRequests.length * 5;
                 }
-                
-                // Restaurant information
+                  // Restaurant information
                 yPos += 20;
-                doc.setFillColor(245, 245, 245);
-                doc.rect(15, yPos - 5, 180, 45, 'F');
+                const restaurantInfoStartY = yPos;
                 
                 doc.setFontSize(14);
                 doc.setFont('helvetica', 'bold');
@@ -661,8 +949,28 @@
                     yPos += 6;
                 });
                 
-                // Footer
-                yPos = 270;
+                // Add background rectangle for restaurant info section
+                const restaurantInfoHeight = yPos - restaurantInfoStartY + 10;
+                doc.setFillColor(245, 245, 245);
+                doc.rect(15, restaurantInfoStartY - 5, 180, restaurantInfoHeight, 'F');
+                
+                // Re-draw the restaurant information text on top of the background
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.setTextColor(...textColor);
+                doc.text('Restaurant Information', 20, restaurantInfoStartY + 5);
+                
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                let tempYPos = restaurantInfoStartY + 15;
+                
+                restaurantInfo.forEach(info => {
+                    doc.text(info, 20, tempYPos);
+                    tempYPos += 6;
+                });
+                
+                // Footer - positioned dynamically after restaurant info
+                yPos += 15;
                 doc.setFontSize(9);
                 doc.setTextColor(...lightGray);
                 doc.setFont('helvetica', 'italic');
